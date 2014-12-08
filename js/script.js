@@ -1,6 +1,5 @@
 var weatherAPI = {
   address: $('#search'),
-
   init: function (){
           $('form').submit(function (e) {
             e.preventDefault();
@@ -24,8 +23,7 @@ var weatherAPI = {
           } //end of else statement      
         }); //end of the click function
   }, // end of the init method 
-
- response : function (user) {
+  response : function (user) {
             // var list.main= ;
             var displayResult ='<table class="resultPane">';
             var temp = parseInt(user.main.temp, 10);
@@ -49,35 +47,27 @@ var weatherAPI = {
               
                 var lngCoord = +user.coord.lon.toFixed(3);  
                 var latCoord = +user.coord.lat.toFixed(8);
-                // var temp = parseInt(user.main.temp, 10);
-                // temp = Math.round(temp-273.15);
                 console.log(temp);
                 if(temp <=15){  
                    displayResult += '<tr class="cold"><td> Current Temp: </td><td>' + temp +'&#x2103; </td></tr>';
                 }else if(temp){
                    displayResult += '<tr class="hot"><td> Current Temp: </td><td>' + temp +'&#x2103; </td></tr>';
                 }
-                // console.log(lngCoord +"  "+latCoord);
-           // This is going to be an if statement
-                // displayResult += '<tr><td> Current Temp: </td><td>' + temp +'&#x2103; </td></tr>';
                 displayResult += '</table>';
                 weatherAPI.mapDisplay(latCoord, lngCoord);
                 $('#resultDiv2').html(displayResult);
                 weatherAPI.btnEffect();
   }, // end of the response method
-
   errorfile : function(){
               var displayResult ='<div class="error"> Your Request Cannot Be Processed at The Moment </div>';
                 $('#resultDiv2').html(displayResult); 
                 weatherAPI.btnEffect();                   
   },
-
   errorMsg: function (){
                 var displayResult ='<div class="error"> Please Enter A City, State or Country </div>';
                   $('#resultDiv2').html(displayResult);
                   weatherAPI.btnEffect();
   },
-
   mapDisplay: function(latitude, longitude) {
                 // console.log(longitude +" and "+ latitude);
                 var mapOptions = {    
@@ -88,7 +78,6 @@ var weatherAPI = {
                         zoom: 7
                       };
       var map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
-
   }, 
   btnEffect : function() {
                 $('#submit').prop('disabled', false);
