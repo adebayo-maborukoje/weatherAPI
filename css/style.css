@@ -120,6 +120,10 @@ RESULTS
   height:14em
 }
 
+.error{
+  color:tomato;
+}
+
 .cloudy{
   background: url('../images/cloudy.png') no-repeat left ;
 }

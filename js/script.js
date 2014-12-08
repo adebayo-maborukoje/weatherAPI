@@ -3,8 +3,9 @@ var weatherAPI = {
   init: function (){
           $('form').submit(function (e) {
             e.preventDefault();
-            if(weatherAPI.address.val() === ""){
+            if(weatherAPI.address.val() === "" ){
                weatherAPI.errorMsg();
+
               // return;
             }
             else{ 
@@ -25,6 +26,12 @@ var weatherAPI = {
   }, // end of the init method 
   response : function (user) {
             // var list.main= ;
+            if(user.cod !== 200) {
+              $('#mapCanvas').css('background-color', 'white');
+              weatherAPI.errorMsg();
+              weatherAPI.btnEffect();
+            } 
+            else {
             var displayResult ='<table class="resultPane">';
             var temp = parseInt(user.main.temp, 10);
             temp = Math.round(temp-273.15);
@@ -57,6 +64,7 @@ var weatherAPI = {
                 weatherAPI.mapDisplay(latCoord, lngCoord);
                 $('#resultDiv2').html(displayResult);
                 weatherAPI.btnEffect();
+      };
   }, // end of the response method
   errorfile : function(){
               var displayResult ='<div class="error"> Your Request Cannot Be Processed at The Moment </div>';
@@ -64,7 +72,7 @@ var weatherAPI = {
                 weatherAPI.btnEffect();                   
   },
   errorMsg: function (){
-                var displayResult ='<div class="error"> Please Enter A City, State or Country </div>';
+                var displayResult ='<div class="error"> NO RESULT FOUND FOR THE SEARCHED PLACE PLEASE ENTER A VALID CITY, STATE OR COUNTRY </div>';
                   $('#resultDiv2').html(displayResult);
                   weatherAPI.btnEffect();
   },
@@ -84,5 +92,4 @@ var weatherAPI = {
                 $('#submit').val("Forecast").css('background-image', 'none');
   }    
 }; // end of the  weatherAPI object 
-
- weatherAPI.init();
+weatherAPI.init();
