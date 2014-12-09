@@ -87,7 +87,7 @@ RESULTS
 #mapCanvas {
   margin-top: 2em;
   height: auto;
-  background-color: white;
+  background-color: white !important;
   min-height: 30em;
   width:98%;
   margin: 2em 1em;
@@ -120,10 +120,6 @@ RESULTS
   height:14em
 }
 
-.error{
-  color:tomato;
-}
-
 .cloudy{
   background: url('../images/cloudy.png') no-repeat left ;
 }
@@ -136,7 +132,10 @@ RESULTS
   background: url('../images/sunny.png') no-repeat left;
 }
 
-.hot{
+.cloudy,
+.sun,
+.sunny,
+.error{
   color:tomato;
   font-size:1.1em;
 }

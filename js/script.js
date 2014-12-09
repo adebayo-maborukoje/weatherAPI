@@ -5,10 +5,8 @@ var weatherAPI = {
             e.preventDefault();
             if(weatherAPI.address.val() === "" ){
                weatherAPI.errorMsg();
-
-              // return;
             }
-            else{ 
+            else { 
             $('#submit').prop('disabled', true);
             $('#submit').val(" ").css('background', 'url("./images/loading2.gif") no-repeat white center'); 
              var url ="http://api.openweathermap.org/data/2.5/weather?";
@@ -27,7 +25,7 @@ var weatherAPI = {
   response : function (user) {
             // var list.main= ;
             if(user.cod !== 200) {
-              $('#mapCanvas').css('background-color', 'white');
+              $('#mapCanvas').html('');
               weatherAPI.errorMsg();
               weatherAPI.btnEffect();
             } 
@@ -36,13 +34,13 @@ var weatherAPI = {
             var temp = parseInt(user.main.temp, 10);
             temp = Math.round(temp-273.15);
               if( temp <= 6) {
-                 displayResult += '<tr class="hot cloudy"><td colspan=2>' + user.name +'</td></tr>';
+                 displayResult += '<tr class="cloudy"><td colspan=2>' + user.name +'</td></tr>';
               }
               else if (temp >= 7 && temp <= 19){ 
-                  displayResult += '<tr class="hot sunny"><td colspan=2>' + user.name +'</td></tr>';
+                  displayResult += '<tr class="sunny"><td colspan=2>' + user.name +'</td></tr>';
               }
               else if(temp >= 20) {
-                 displayResult += '<tr class="hot sun"><td colspan=2>' + user.name +'</td></tr>';
+                 displayResult += '<tr class="sun"><td colspan=2>' + user.name +'</td></tr>';
               }  
                 displayResult += '<tr><td> Country: </td><td>' + user.sys.country +'</td></tr>';
                 displayResult += '<tr><td> Latitude: </td><td>' + user.coord.lon +'</td></tr>';
